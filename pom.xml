@@ -12,14 +12,15 @@
 	<artifactId>aa-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>aa-service</name>
+	<packaging>war</packaging>
 	<description>Servicio de gestión de vuelos de AA (American Airlines)</description>
 
 	<!--
 		Enterprise informations
 	-->
 	<organization>
-		<name>Seguros Alfa</name>
-		<url>https://www.segurosalfa.com.co/</url>
+		<name>Pontificia Universidad Javeriana</name>
+		<url>https://www.javeriana.edu.co/</url>
 	</organization>
 
 	<!--
@@ -95,13 +96,28 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-web-services</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jdbc</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 
 		<dependency>
