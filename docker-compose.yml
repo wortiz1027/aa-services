@@ -1,0 +1,47 @@
+version: '3.7'
+services:
+  db_bookings:
+    image: mysql:5.7.31
+    container_name: db_bookings
+    hostname: db_bookings
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'mysql'
+      MYSQL_DATABASE: 'bookingdb'
+      MYSQL_USER: 'booking'
+      MYSQL_PASSWORD: 'booking2020++'
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./src/main/resources/databases/mysql-booking-schema-v0.1.sql:/docker-entrypoint-initdb.d/mysql-booking-schema-v0.1.sql
+      #- data_convenios:/var/lib/mysql
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping https://linuxize.com/post/how-to-remove-docker-images-containers-volumes-and-networks/", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+  bookings-service:
+    image: bookings-service:latest
+    container_name: bookings-service
+    hostname: bookings-service
+    restart: always
+    ports:
+      - 8087:8087
+    networks:
+      - backend
+    depends_on:
+      - db_bookings
+    environment:
+      - SERVICE_PORTS=8087
+      - DATABASE_HOST=db_bookings
+      - DATABASE_USER=booking
+      - DATABASE_PASSWORD=booking2020++
+      - DATABASE_NAME=bookingdb
+      - DATABASE_PORT=3306
+volumes:
+  data_convenios:
+networks:
+  backend:
+    external: true
