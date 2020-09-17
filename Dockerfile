@@ -9,23 +9,30 @@
 # escape=\ (backslash)
 # Imagen base del Docker Registry para compilar nuestra servicio de booking AA
 # Build Stage
-FROM maven:3.6.3-jdk-11-slim AS builder
+FROM maven:3.6.3-jdk-11-slim AS BUILDER
 WORKDIR /build/
 COPY pom.xml .
-COPY ./src ./src
+COPY /src ./src
 RUN mvn clean package -Dmaven.test.skip=true
 
 # Run Stage
 FROM payara/server-full
+ENV APP_HOME="/app"
 
-ENV HTTP_PORT=8087 \
-    MYSQL_HOST=db_bookings \
-    MYSQL_PORT=33060 \
-    LIBS=/opt/payara5/glassfish/domains/domain1/lib \
-    MYSQL_DRIVER=5.1.49 \
-    MYSQL_DRIVER=mysql-connector-java-${MYSQL_DRIVER}.jar \
-    JDBC_CONNECTION_POOL_CMD="create-jdbc-connection-pool --datasourceclassname com.mysql.jdbc.jdbc2.optional.MysqlDataSource --restype javax.sql.ConnectionPoolDataSource --property user=booking:password=booking2020++:DatabaseName=bookingdb:ServerName=${MYSQL_HOST}:port=${MYSQL_PORT} mysql-pool" \
-    JDBC_RESOURCE_CMD="create-jdbc-resource --connectionpoolid mysql-pool jdbc/mysql-pool"
+ENV HTTP_PORT 8090
+ENV MYSQL_HOST db_bookings
+ENV MYSQL_PORT 33060
+ENV LIBS /opt/payara/appserver/glassfish/domains/domain1/lib
+ENV MYSQL_DRIVER_VERSION 5.1.49
+ENV MYSQL_DRIVER mysql-connector-java-5.1.49.jar
+ENV JDBC_CONNECTION_POOL_CMD "create-jdbc-connection-pool --datasourceclassname com.mysql.jdbc.jdbc2.optional.MysqlDataSource --restype javax.sql.ConnectionPoolDataSource --property user=booking:password=booking2020++:DatabaseName=bookingdb:ServerName=${MYSQL_HOST}:port=${MYSQL_PORT} mysql-pool"
+ENV JDBC_RESOURCE_CMD "create-jdbc-resource --connectionpoolid mysql-pool jdbc/mysql-pool"
+
+USER root
+
+RUN apt-get update -y && apt-get install -y wget
+
+USER payara
 
 # Informacion de la persona que mantiene la imagen
 LABEL org.opencontainers.image.created=$BUILD_DATE \
@@ -40,11 +47,17 @@ LABEL org.opencontainers.image.created=$BUILD_DATE \
 	  org.opencontainers.image.title="Reservas American Airline" \
 	  org.opencontainers.image.description="El siguiente servicio tiene como finalidad gestionar el proceso de reserva de vuelos para toures balon"
 
-RUN wget --quiet https://repo1.maven.org/maven2/mysql/mysql-connector-java/${MYSQL_DRIVER}/${MYSQL_DRIVER} -O ${MYSQL_DRIVER} && mv ${MYSQL_DRIVER} ${LIBS}
+RUN wget --quiet https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.49/mysql-connector-java-5.1.49.jar -O mysql-connector-java-5.1.49.jar
+USER root
+RUN chown payara mysql-connector-java-5.1.49.jar
+USER payara
+
+RUN mkdir -p ${LIBS}
+RUN mv mysql-connector-java-5.1.49.jar ${LIBS}
 RUN echo ${JDBC_CONNECTION_POOL_CMD} > ${POSTBOOT_COMMANDS} && \
     echo ${JDBC_RESOURCE_CMD} >> ${POSTBOOT_COMMANDS}
 
-COPY --from=builder /aa-service/target/bookings-service.war ${DEPLOY_DIR}
+COPY --from=BUILDER /build/target/bookings-service.war ${DEPLOY_DIR}
 
 ENTRYPOINT  ${PAYARA_PATH}/generate_deploy_commands.sh && \
             ${PAYARA_PATH}/bin/startInForeground.sh \
