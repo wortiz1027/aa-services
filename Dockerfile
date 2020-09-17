@@ -20,10 +20,11 @@ FROM payara/server-full
 
 ENV HTTP_PORT=8087 \
     MYSQL_HOST=db_bookings \
+    MYSQL_PORT=33060 \
     LIBS=/opt/payara5/glassfish/domains/domain1/lib \
     MYSQL_DRIVER=5.1.49 \
     MYSQL_DRIVER=mysql-connector-java-${MYSQL_DRIVER}.jar \
-    JDBC_CONNECTION_POOL_CMD="create-jdbc-connection-pool --datasourceclassname com.mysql.jdbc.jdbc2.optional.MysqlDataSource --restype javax.sql.ConnectionPoolDataSource --property user=booking:password=booking2020++:DatabaseName=bookingdb:ServerName=${MYSQL_HOST}:port=3306 mysql-pool" \
+    JDBC_CONNECTION_POOL_CMD="create-jdbc-connection-pool --datasourceclassname com.mysql.jdbc.jdbc2.optional.MysqlDataSource --restype javax.sql.ConnectionPoolDataSource --property user=booking:password=booking2020++:DatabaseName=bookingdb:ServerName=${MYSQL_HOST}:port=${MYSQL_PORT} mysql-pool" \
     JDBC_RESOURCE_CMD="create-jdbc-resource --connectionpoolid mysql-pool jdbc/mysql-pool"
 
 # Informacion de la persona que mantiene la imagen

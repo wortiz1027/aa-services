@@ -1,12 +1,14 @@
 package us.com.service.aa.repository;
 
-import org.springframework.data.jdbc.repository.query.Query;
+import us.com.service.aa.domain.FlightDb;
+import us.com.service.aa.domain.Result;
 
 import java.util.List;
 
 public interface Booking {
 
-    @Query("SELECT * FROM Vuelos")
-    List<?> findAll();
+    List<Result> findFlightsByCity(String city);
+    List<Result> findAllFlights(String available);
+    List<FlightDb> finAll();
 
 }

@@ -12,10 +12,10 @@ services:
       MYSQL_PASSWORD: 'booking2020++'
       MYSQL_ROOT_HOST: '%'
     ports:
-      - '3306:3306'
+      - '33060:3306'
     volumes:
       - ./src/main/resources/databases/mysql-booking-schema-v0.1.sql:/docker-entrypoint-initdb.d/mysql-booking-schema-v0.1.sql
-      #- data_convenios:/var/lib/mysql
+      - ./src/main/resources/databases/mysql-booking-data-v0.1.sql:/docker-entrypoint-initdb.d/mysql-booking-data-v0.1.sql
     networks:
       - backend
     healthcheck:
@@ -39,7 +39,7 @@ services:
       - DATABASE_USER=booking
       - DATABASE_PASSWORD=booking2020++
       - DATABASE_NAME=bookingdb
-      - DATABASE_PORT=3306
+      - DATABASE_PORT=33060
 volumes:
   data_convenios:
 networks:
