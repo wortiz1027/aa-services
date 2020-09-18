@@ -16,8 +16,8 @@ El equipo 5 está conformado por:
     2. [Descripcion](#DESC)
     3. [Configuracion](#CONFIG)
     4. [Reques/Response](#RQ-RS)
-        4.1. [Operacion GetFlights](#GETFLIHTS)
-        4.2. [Operacion GetAllFlights](#GETALLFLIHTS)
+        1. [Operacion GetFlights](#GETFLIHTS)
+        2. [Operacion GetAllFlights](#GETALLFLIHTS)
     5. [Codigos/Mensajes](#CODES-MSGS)
 
 ### 1. Web Service American Airline <a name="WEB-SERVICE"></a>
@@ -31,36 +31,36 @@ A continuacion se ilustran los pasos necesarios para poner en funcionamiento el 
 #### Descargar los fuentes del servicio
 
  - Clonar el repositorio
-    > ***git clone git@gitlab.com:wortiz1027/aa-services.git
+    > *git clone git@gitlab.com:wortiz1027/aa-services.git
 
   - moverse a la raiz del repositorio  
-    > cd aa-services
+    > *cd aa-services
 
 #### Crear la red [backend] en docker
 
-> ***docker network create --driver bridge backend
+> *docker network create --driver bridge backend
 
 #### Build de la imagen docker con el servicio
 
 Primero que todo es importante ubicarse en la raiz del proyecto
 
-> ***docker build --tag bookings-service .
+> *docker build --tag bookings-service .
 
 #### Ejecucion de los contenedores
 
-> ***docker-compose up -d
+> *docker-compose up -d
 
 #### Docker Tips
 
 Si deseamos ver el log de un contenedor en tiempo real ejecutamos la sigueinte instruccion:
 
-> ***docker logs -f --tail 10 <container_name>
+> *docker logs -f --tail 10 <container_name>
 
 ### Url
 
 A continuacion se ilustra la url para cargar el wsdl del servicio:
 
-> ***http://localhost:8090/bookings/ws/booking.wsdl
+> *http://localhost:8090/bookings/ws/booking.wsdl
 
 ### 4. Request/Response <a name="RQ-RS"></a>
 
