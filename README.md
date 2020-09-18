@@ -31,36 +31,36 @@ A continuacion se ilustran los pasos necesarios para poner en funcionamiento el 
 #### Descargar los fuentes del servicio
 
  - Clonar el repositorio
-    > *git clone git@gitlab.com:wortiz1027/aa-services.git
+    > _git clone git@gitlab.com:wortiz1027/aa-services.git_
 
   - moverse a la raiz del repositorio  
-    > *cd aa-services
+    > _cd aa-services_
 
 #### Crear la red [backend] en docker
 
-> *docker network create --driver bridge backend
+> _docker network create --driver bridge backend_
 
 #### Build de la imagen docker con el servicio
 
 Primero que todo es importante ubicarse en la raiz del proyecto
 
-> *docker build --tag bookings-service .
+> _docker build --tag bookings-service ._
 
 #### Ejecucion de los contenedores
 
-> *docker-compose up -d
+> docker-compose up -d
 
 #### Docker Tips
 
 Si deseamos ver el log de un contenedor en tiempo real ejecutamos la sigueinte instruccion:
 
-> *docker logs -f --tail 10 <container_name>
+> _docker logs -f --tail 10 <container_name>_
 
 ### Url
 
 A continuacion se ilustra la url para cargar el wsdl del servicio:
 
-> *http://localhost:8090/bookings/ws/booking.wsdl
+> _http://localhost:8090/bookings/ws/booking.wsdl_
 
 ### 4. Request/Response <a name="RQ-RS"></a>
 
