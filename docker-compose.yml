@@ -10,12 +10,10 @@ services:
       MYSQL_DATABASE: 'bookingdb'
       MYSQL_USER: 'booking'
       MYSQL_PASSWORD: 'booking2020++'
-      MYSQL_ROOT_HOST: '%'
     ports:
-      - '33060:3306'
+      - 33060:3306
     volumes:
-      - ./src/main/resources/databases/mysql-booking-schema-v0.1.sql:/docker-entrypoint-initdb.d/mysql-booking-schema-v0.1.sql
-      - ./src/main/resources/databases/mysql-booking-data-v0.1.sql:/docker-entrypoint-initdb.d/mysql-booking-data-v0.1.sql
+      - ./src/main/resources/databases:/docker-entrypoint-initdb.d
     networks:
       - backend
     healthcheck:
@@ -28,20 +26,19 @@ services:
     hostname: bookings-service
     restart: always
     ports:
-      - 8087:8087
+      - 8090:8090
     networks:
       - backend
     depends_on:
       - db_bookings
     environment:
-      - SERVICE_PORTS=8087
+      - SERVICE_PORTS=8090
       - DATABASE_HOST=db_bookings
       - DATABASE_USER=booking
       - DATABASE_PASSWORD=booking2020++
       - DATABASE_NAME=bookingdb
       - DATABASE_PORT=33060
-volumes:
-  data_convenios:
+
 networks:
   backend:
     external: true

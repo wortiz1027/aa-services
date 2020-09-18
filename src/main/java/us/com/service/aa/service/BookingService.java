@@ -6,8 +6,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import us.com.service.aa.domain.*;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,13 +54,10 @@ public class BookingService implements Booking {
         List<Seat> seats = new ArrayList<>();
         SeatsList seatsList = new SeatsList();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime date = LocalDateTime.parse(results.get(0).getDate(), formatter);
-
         flight.setNumber(results.get(0).getNumberFlight());
         flight.setSource(results.get(0).getSource());
         flight.setDestination(results.get(0).getDestiny());
-        flight.setDate(date);
+        flight.setDate(results.get(0).getDate());
 
         for (Result r : results) {
             Seat seat = new Seat();
@@ -122,16 +117,14 @@ public class BookingService implements Booking {
 
             List<FlightDb> list = repository.finAll();
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
             for (FlightDb f : list) {
                 List<Seat> seats = new ArrayList<>();
                 Flight flight = new Flight();
-                LocalDateTime date = LocalDateTime.parse(f.getDate(), formatter);
+
                 flight.setNumber(f.getNumber());
                 flight.setSource(f.getSource());
                 flight.setDestination(f.getDestination());
-                flight.setDate(date);
+                flight.setDate(f.getDate());
 
                 List<Result> tmp = results.stream().filter(x -> f.getId().equalsIgnoreCase(x.getId())).collect(Collectors.toList());
 

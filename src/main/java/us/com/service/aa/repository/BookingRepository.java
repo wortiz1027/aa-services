@@ -20,7 +20,7 @@ public class BookingRepository implements Booking {
 
     @Override
     public List<Result> findFlightsByCity(String city) {
-        String query = "SELECT v.numero flight_number, v.origen source, v.destino destiny, v.fecha date, s.numero seat_number, s.disponible available " +
+        String query = "SELECT v.id flight_id, v.numero flight_number, v.origen source, v.destino destiny, v.fecha date, s.numero seat_number, s.disponible available " +
                         "FROM Vuelos v INNER JOIN Sillas s ON v.id = s.id_vuelo " +
                         "WHERE s.disponible = 'S' " +
                         "AND v.origen = :city";

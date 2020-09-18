@@ -12,27 +12,14 @@
 FROM maven:3.6.3-jdk-11-slim AS BUILDER
 WORKDIR /build/
 COPY pom.xml .
-COPY /src ./src
+COPY ./src ./src
 RUN mvn clean package -Dmaven.test.skip=true
 
 # Run Stage
-FROM payara/server-full
-ENV APP_HOME="/app"
+FROM adoptopenjdk:11-jre-hotspot
 
+ENV APP_HOME "/app"
 ENV HTTP_PORT 8090
-ENV MYSQL_HOST db_bookings
-ENV MYSQL_PORT 33060
-ENV LIBS /opt/payara/appserver/glassfish/domains/domain1/lib
-ENV MYSQL_DRIVER_VERSION 5.1.49
-ENV MYSQL_DRIVER mysql-connector-java-5.1.49.jar
-ENV JDBC_CONNECTION_POOL_CMD "create-jdbc-connection-pool --datasourceclassname com.mysql.jdbc.jdbc2.optional.MysqlDataSource --restype javax.sql.ConnectionPoolDataSource --property user=booking:password=booking2020++:DatabaseName=bookingdb:ServerName=${MYSQL_HOST}:port=${MYSQL_PORT} mysql-pool"
-ENV JDBC_RESOURCE_CMD "create-jdbc-resource --connectionpoolid mysql-pool jdbc/mysql-pool"
-
-USER root
-
-RUN apt-get update -y && apt-get install -y wget
-
-USER payara
 
 # Informacion de la persona que mantiene la imagen
 LABEL org.opencontainers.image.created=$BUILD_DATE \
@@ -47,19 +34,17 @@ LABEL org.opencontainers.image.created=$BUILD_DATE \
 	  org.opencontainers.image.title="Reservas American Airline" \
 	  org.opencontainers.image.description="El siguiente servicio tiene como finalidad gestionar el proceso de reserva de vuelos para toures balon"
 
-RUN wget --quiet https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.49/mysql-connector-java-5.1.49.jar -O mysql-connector-java-5.1.49.jar
-USER root
-RUN chown payara mysql-connector-java-5.1.49.jar
-USER payara
+#RUN apt-get update && apt-get install -y iputils-ping && apt-get -y -f install mysql-client
 
-RUN mkdir -p ${LIBS}
-RUN mv mysql-connector-java-5.1.49.jar ${LIBS}
-RUN echo ${JDBC_CONNECTION_POOL_CMD} > ${POSTBOOT_COMMANDS} && \
-    echo ${JDBC_RESOURCE_CMD} >> ${POSTBOOT_COMMANDS}
+# Puerto de exposicion del servicio
+EXPOSE $HTTP_PORT
 
-COPY --from=BUILDER /build/target/bookings-service.war ${DEPLOY_DIR}
+# Creando directorio de la aplicacion
+RUN mkdir $APP_HOME
 
-ENTRYPOINT  ${PAYARA_PATH}/generate_deploy_commands.sh && \
-            ${PAYARA_PATH}/bin/startInForeground.sh \
-            --passwordfile=/opt/pwdfile \
-            --postbootcommandfile ${POSTBOOT_COMMANDS} ${PAYARA_DOMAIN}
+# Seteando el workspace
+WORKDIR $APP_HOME
+
+COPY --from=BUILDER /build/target/bookings-service.jar ${APP_HOME}
+
+ENTRYPOINT ["java","-jar","/app/bookings-service.jar"]

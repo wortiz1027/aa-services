@@ -8,7 +8,7 @@
             <xs:element name="number" type="xs:string" />
             <xs:element name="source" type="xs:string" />
             <xs:element name="destination" type="xs:string" />
-            <xs:element name="date" type="xs:dateTime" />
+            <xs:element name="date" type="xs:string" />
             <xs:element name="seats" type="flg:SeatsList"/>
         </xs:sequence>
     </xs:complexType>

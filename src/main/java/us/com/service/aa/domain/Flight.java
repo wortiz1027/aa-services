@@ -1,15 +1,11 @@
 package us.com.service.aa.domain;
 
 import lombok.Data;
-import us.com.service.aa.ws.config.LocalDateAdapter;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -29,8 +25,8 @@ public class Flight  implements java.io.Serializable {
     @XmlElement
     private String destination;
     @XmlElement
-    @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
-    private LocalDateTime date;
+    //@XmlJavaTypeAdapter(value = LocalDateAdapter.class)
+    private String date;
     @XmlElement
     private SeatsList seats;
 

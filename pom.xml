@@ -12,7 +12,7 @@
 	<artifactId>aa-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>aa-service</name>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<description>Servicio de gestión de vuelos de AA (American Airlines)</description>
 
 	<!--
@@ -126,12 +126,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>io.vavr</groupId>
-			<artifactId>vavr</artifactId>
-			<version>0.9.0</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jdbc</artifactId>
 		</dependency>
@@ -145,6 +139,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.31</version>
 		</dependency>
 
 		<dependency>
