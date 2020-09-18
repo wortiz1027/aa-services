@@ -34,8 +34,6 @@ LABEL org.opencontainers.image.created=$BUILD_DATE \
 	  org.opencontainers.image.title="Reservas American Airline" \
 	  org.opencontainers.image.description="El siguiente servicio tiene como finalidad gestionar el proceso de reserva de vuelos para toures balon"
 
-#RUN apt-get update && apt-get install -y iputils-ping && apt-get -y -f install mysql-client
-
 # Puerto de exposicion del servicio
 EXPOSE $HTTP_PORT
 

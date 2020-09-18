@@ -1,3 +1,13 @@
+# -------------------------------------------------------------------
+# - DOCKER COMPOSE FILE
+# - AUTOR: Equipo 5
+# - FECHA: 17-Septiembre-2020
+# - DESCRIPCION: Docker compose file que permite la
+# -              creacion de 2 contendores uno para la aplicacion
+# -              de consulta de vuelos de American Airline y su
+# -               Respectiva Base de datos
+# -------------------------------------------------------------------
+
 version: '3.7'
 services:
   db_bookings:

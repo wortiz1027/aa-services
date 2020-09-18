@@ -1,0 +1,9 @@
+${AnsiColor.GREEN}  _____  _    _      _   _____ _____ _____            ___   ___ ___   ___
+${AnsiColor.GREEN} |  __ \| |  | |    | | |  __ \_   _/ ____|   /\     |__ \ / _ \__ \ / _ \
+${AnsiColor.GREEN} | |__) | |  | |    | | | |__) || || |       /  \       ) | | | | ) | | | |
+${AnsiColor.GREEN} |  ___/| |  | |_   | | |  ___/ | || |      / /\ \     / /| | | |/ /| | | |
+${AnsiColor.GREEN} | |    | |__| | |__| | | |    _| || |____ / ____ \   / /_| |_| / /_| |_| |
+${AnsiColor.GREEN} |_|     \____/ \____/  |_|   |_____\_____/_/    \_\ |____|\___/____|\___/
+${AnsiColor.BRIGHT_YELLOW} ${spring-boot.formatted-version}
+${AnsiColor.BRIGHT_YELLOW} :: Equipo 5 Javeriana ::
+${AnsiColor.BRIGHT_YELLOW} :: Spring Developers  :: ${Ansi.DEFAULT}
