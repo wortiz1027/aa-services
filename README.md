@@ -20,7 +20,7 @@ El equipo 5 está conformado por:
         4.2. [Operacion GetAllFlights](#GETALLFLIHTS)
     5. [Codigos/Mensajes](#CODES-MSGS)
 
-### 1. Web Service American Airline <a name="WEB-SERVICE"></a>
+### 1. Web Service American Airlines <a name="WEB-SERVICE"></a>
 
 ### 2. Descripcion <a name="DESC"></a>
 El presente servicio tiene por objetivo consultar los vuelos disponibles entre distintas ciudades de Colombia
