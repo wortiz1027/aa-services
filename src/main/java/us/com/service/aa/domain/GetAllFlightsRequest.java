@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.*;
         "available"
 })
 @XmlRootElement(name = "GetAllFlightsRequest")
-public class GetAllFlightsRequest  implements java.io.Serializable {
+public class GetAllFlightsRequest implements java.io.Serializable {
 
     @XmlElement(required = true)
     private String available;

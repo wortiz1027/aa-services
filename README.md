@@ -40,12 +40,6 @@ A continuacion se ilustran los pasos necesarios para poner en funcionamiento el 
 
 > ***docker network create --driver bridge backend
 
-#### Build de la imagen docker con el servicio
-
-Primero que todo es importante ubicarse en la raiz del proyecto
-
-> ***docker build --tag bookings-service .
-
 #### Ejecucion de los contenedores
 
 > ***docker-compose up -d
@@ -60,7 +54,7 @@ Si deseamos ver el log de un contenedor en tiempo real ejecutamos la sigueinte i
 
 A continuacion se ilustra la url para cargar el wsdl del servicio:
 
-> ***http://localhost:8090/bookings/ws/booking.wsdl
+> ***http://localhost:7070/bookings/ws/booking.wsdl
 
 ### 4. Request/Response <a name="RQ-RS"></a>
 

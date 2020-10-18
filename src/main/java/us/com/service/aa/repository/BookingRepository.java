@@ -21,9 +21,9 @@ public class BookingRepository implements Booking {
     @Override
     public List<Result> findFlightsByCity(String city) {
         String query = "SELECT v.id flight_id, v.numero flight_number, v.origen source, v.destino destiny, v.fecha date, s.numero seat_number, s.disponible available " +
-                        "FROM Vuelos v INNER JOIN Sillas s ON v.id = s.id_vuelo " +
-                        "WHERE s.disponible = 'S' " +
-                        "AND v.origen = :city";
+                "FROM Vuelos v INNER JOIN Sillas s ON v.id = s.id_vuelo " +
+                "WHERE s.disponible = 'S' " +
+                "AND v.origen = :city";
 
         SqlParameterSource parameters = new MapSqlParameterSource("city", city);
 
@@ -33,8 +33,8 @@ public class BookingRepository implements Booking {
     @Override
     public List<Result> findAllFlights(String available) {
         String query = "SELECT v.id flight_id, v.numero flight_number, v.origen source, v.destino destiny, v.fecha date, s.numero seat_number, s.disponible available " +
-                        "FROM Vuelos v INNER JOIN Sillas s ON v.id = s.id_vuelo " +
-                        "WHERE s.disponible = :available";
+                "FROM Vuelos v INNER JOIN Sillas s ON v.id = s.id_vuelo " +
+                "WHERE s.disponible = :available";
 
         SqlParameterSource parameters = new MapSqlParameterSource("available", available);
 
@@ -44,7 +44,7 @@ public class BookingRepository implements Booking {
     @Override
     public List<FlightDb> finAll() {
         String query = "SELECT v.id id_number, v.numero flight_number, v.origen source, v.destino destiny, v.fecha date " +
-                        "FROM Vuelos v";
+                "FROM Vuelos v";
 
         SqlParameterSource parameters = new MapSqlParameterSource("available", "");
 

@@ -8,7 +8,9 @@ import java.util.List;
 public interface Booking {
 
     List<Result> findFlightsByCity(String city);
+
     List<Result> findAllFlights(String available);
+
     List<FlightDb> finAll();
 
 }

@@ -6,6 +6,7 @@ import us.com.service.aa.domain.GetFlightsResponse;
 public interface Booking {
 
     GetFlightsResponse flightsAvailablesByCity(String city);
+
     GetAllFlightsResponse getAllflightsAvailables(String available);
 
 }

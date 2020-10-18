@@ -2,7 +2,7 @@
 # |         SERVER CONFIG
 # +-----------------------------------------------------
 server:
-  port: 8090
+  port: 7070
   servlet:
     context-path: /bookings
     session:
@@ -16,7 +16,7 @@ server:
 spring:
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://db_bookings:3306/bookingdb?allowPublicKeyRetrieval=true&useSSL=false&autoReconnect=true&failOverReadOnly=false&maxReconnects=10
+    url: jdbc:mysql://${DATABASE_HOST:localhost}:${DATABASE_PORT:33060}/bookingdb?allowPublicKeyRetrieval=true&useSSL=false&autoReconnect=true&failOverReadOnly=false&maxReconnects=10
     username: booking
     password: booking2020++
     platform: mysql

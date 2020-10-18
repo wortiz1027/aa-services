@@ -16,9 +16,9 @@ import javax.xml.bind.annotation.XmlType;
         "date",
         "seats"
 }, namespace = "http://us.aa.com/flights")
-public class Flight  implements java.io.Serializable {
+public class Flight implements java.io.Serializable {
 
-   @XmlElement
+    @XmlElement
     private String number;
     @XmlElement
     private String source;

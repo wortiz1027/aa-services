@@ -5,10 +5,10 @@
 
     <xs:complexType name="Flight">
         <xs:sequence>
-            <xs:element name="number" type="xs:string" />
-            <xs:element name="source" type="xs:string" />
-            <xs:element name="destination" type="xs:string" />
-            <xs:element name="date" type="xs:string" />
+            <xs:element name="number" type="xs:string"/>
+            <xs:element name="source" type="xs:string"/>
+            <xs:element name="destination" type="xs:string"/>
+            <xs:element name="date" type="xs:string"/>
             <xs:element name="seats" type="flg:SeatsList"/>
         </xs:sequence>
     </xs:complexType>
@@ -21,8 +21,8 @@
 
     <xs:complexType name="Seat">
         <xs:sequence>
-            <xs:element name="number" type="xs:string" />
-            <xs:element name="available" type="xs:string" />
+            <xs:element name="number" type="xs:string"/>
+            <xs:element name="available" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -34,27 +34,27 @@
 
     <xs:complexType name="Information">
         <xs:sequence>
-            <xs:element name="flight" type="flg:Flight" />
+            <xs:element name="flight" type="flg:Flight"/>
         </xs:sequence>
     </xs:complexType>
 
     <xs:complexType name="InformationFlights">
         <xs:sequence>
-            <xs:element name="flights" type="flg:Flights" />
+            <xs:element name="flights" type="flg:Flights"/>
         </xs:sequence>
     </xs:complexType>
 
     <xs:complexType name="Header">
         <xs:sequence>
-            <xs:element name="code" type="xs:string" />
-            <xs:element name="description" type="xs:string" />
+            <xs:element name="code" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 
     <xs:element name="GetFlightsRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="city" type="xs:string" />
+                <xs:element name="city" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -62,8 +62,8 @@
     <xs:element name="GetFlightsResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Header" type="flg:Header" />
-                <xs:element name="Information" type="flg:Information" />
+                <xs:element name="Header" type="flg:Header"/>
+                <xs:element name="Information" type="flg:Information"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -71,7 +71,7 @@
     <xs:element name="GetAllFlightsRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="available" type="xs:string" />
+                <xs:element name="available" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -79,8 +79,8 @@
     <xs:element name="GetAllFlightsResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Header" type="flg:Header" />
-                <xs:element name="Information" type="flg:InformationFlights" />
+                <xs:element name="Header" type="flg:Header"/>
+                <xs:element name="Information" type="flg:InformationFlights"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

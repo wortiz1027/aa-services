@@ -27,27 +27,27 @@ services:
     networks:
       - backend
     healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping https://linuxize.com/post/how-to-remove-docker-images-containers-volumes-and-networks/", "-h", "localhost"]
+      test: [ "CMD", "mysqladmin" ,"ping https://linuxize.com/post/how-to-remove-docker-images-containers-volumes-and-networks/", "-h", "localhost" ]
       timeout: 20s
       retries: 10
   bookings-service:
-    image: bookings-service:latest
+    image: wortiz1027/aa-services:latest
     container_name: bookings-service
     hostname: bookings-service
     restart: always
     ports:
-      - 8090:8090
+      - 7070:7070
     networks:
       - backend
     depends_on:
       - db_bookings
     environment:
-      - SERVICE_PORTS=8090
+      - SERVICE_PORTS=7070
       - DATABASE_HOST=db_bookings
       - DATABASE_USER=booking
       - DATABASE_PASSWORD=booking2020++
       - DATABASE_NAME=bookingdb
-      - DATABASE_PORT=33060
+      - DATABASE_PORT=3306
 
 networks:
   backend:

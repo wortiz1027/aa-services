@@ -7,7 +7,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-@Data@XmlAccessorType(XmlAccessType.FIELD)
+@Data
+@XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Seat", propOrder = {
         "number",
         "available",
