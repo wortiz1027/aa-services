@@ -25,7 +25,7 @@ services:
     volumes:
       - ./src/main/resources/databases:/docker-entrypoint-initdb.d
     networks:
-      - backend
+      - ntw_backend
     healthcheck:
       test: [ "CMD", "mysqladmin" ,"ping https://linuxize.com/post/how-to-remove-docker-images-containers-volumes-and-networks/", "-h", "localhost" ]
       timeout: 20s
@@ -36,13 +36,13 @@ services:
     hostname: bookings-service
     restart: always
     ports:
-      - 7070:7070
+      - 7073:7073
     networks:
-      - backend
+      - ntw_backend
     depends_on:
       - db_bookings
     environment:
-      - SERVICE_PORTS=7070
+      - SERVICE_PORTS=7073
       - DATABASE_HOST=db_bookings
       - DATABASE_USER=booking
       - DATABASE_PASSWORD=booking2020++
@@ -50,5 +50,5 @@ services:
       - DATABASE_PORT=3306
 
 networks:
-  backend:
+  ntw_backend:
     external: true
