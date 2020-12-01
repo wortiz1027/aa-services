@@ -36,7 +36,7 @@ services:
     hostname: bookings-service
     restart: always
     ports:
-      - 7073:7073
+      - 7070:7070
     networks:
       - ntw_backend
     depends_on:
